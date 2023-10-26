@@ -85,6 +85,9 @@ function App() {
   const[isLoading,setIsLoading] =useState<boolean>(true);
   const[isShow,setIsShow]=useState<boolean>(false);
   const[error,setError]=useState<string>('');
+ 
+ 
+  
   const themeColor :ThemeColor = {
     "default":{
       "back":"bg-indigo-500",
@@ -215,6 +218,26 @@ function App() {
   }
   const PostListName :string[] = ["상품인수","상품이동중","배송지도착","배송출발","배송완료"];
 
+ 
+  const savedThemeLocal = (theme:string) =>{
+    localStorage.setItem("theme",theme)
+  }
+
+  const ThemeChange = (newTheme:string) => {
+    setTheme(newTheme);
+    savedThemeLocal(newTheme);
+  }
+  
+  const getThemeLocal=()=>{
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme || 'default';
+  }
+
+  useEffect(()=>{
+    const savedTheme = getThemeLocal();
+    setTheme(savedTheme)
+  },[])
+
   return (
     <>
     {
@@ -285,7 +308,7 @@ function App() {
           {
             buttons.map((e,i)=>{
               return(
-                <button key={i} className={`mx-1 md:mx-2 xl:mx-3 ${themeColor[theme].active}`} onClick={()=>{setTheme(e.theme)}}>{e.name}</button>
+                <button key={i} className={`mx-1 md:mx-2 xl:mx-3 ${themeColor[theme].active}`} onClick={()=>{ThemeChange(e.theme)}}>{e.name}</button>
                 //재렌더링 되는 state 값을 변경해줘야함
               )
             })
