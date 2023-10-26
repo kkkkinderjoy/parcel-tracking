@@ -174,8 +174,11 @@ function App() {
   const blindNumber = (e:React.ChangeEvent<HTMLInputElement>) =>{ 
     //oninput 이벤트는 string을 받을 때 위의 코드처럼 받아야함
       const value = e.target.value;
-      if(isBtn === 1){
-        e.target.value = e.target.value.replace(/[^0-9]/g,'')       
+      const result = carriers.find((e)=>e.Code ===tcode);
+      if(result){ //처음 페이지에서 국내택배는 숫자만 입력가능하게 제한두고, 국외택배는 제한두지 않게 하기
+        if(result.International === "false"){
+          e.target.value = e.target.value.replace(/[^0-9]/g,'')   
+        }
       }
       setTinvoice(value)
   }
