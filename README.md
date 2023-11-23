@@ -13,7 +13,7 @@
 
 ### 💻 기술스택
 
-- `tailwindCSS`, `React`, `Typescript`
+-`React`, `Typescript`
 
 <br />
 
