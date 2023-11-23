@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { useEffect, useState } from 'react';
+
 function App() {
     const [carriers, setCarriers] = useState([]);
     const [allCarriers, setAllCarriers] = useState([]);
@@ -139,15 +140,18 @@ function App() {
     const ThemeChange = (newTheme) => {
         setTheme(newTheme);
         savedThemeLocal(newTheme);
-    };
+    }
+
     const getThemeLocal = () => {
         const savedTheme = localStorage.getItem("theme");
         return savedTheme || 'default';
-    };
+    }
+    
     useEffect(() => {
         const savedTheme = getThemeLocal();
         setTheme(savedTheme);
-    }, []);
+    }, [])
+    
     return (<>
     {isLoading &&
             <div className="fixed w-full h-full bg-black/50 top-0 left-0 z-50">
@@ -212,7 +216,7 @@ function App() {
         <div className="">
           <span className="">테마 :</span>
           {buttons.map((e, i) => {
-            return (<button key={i} className={`mx-1 md:mx-2 xl:mx-3 ${themeColor[theme].active}`} onClick={() => { ThemeChange(e.theme); }}>{e.name}</button>);
+            return (<button key={i} className={`mx-1 md:mx-2 xl:mx-3`} onClick={() => { ThemeChange(e.theme); }}>{e.name}</button>);
         })}
         </div>
       </div> 
@@ -242,7 +246,7 @@ function App() {
         })}
           </select>
         </div>
-        {tinvoice}
+        {/* {tinvoice} */}
         <div className="basis-full py-4 border-b text-center">
             <input type="text" onInput={blindNumber} placeholder='운송장 번호를 입력해주세요' className={`w-full border px-5 py-2 rounded-md outline-indigo-300 ${themeColor[theme].outline}`}/>
         </div>
