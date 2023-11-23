@@ -6,7 +6,8 @@
 
 ### 🔗 배포링크
 
-> <https://parcel-tracking-kohl.vercel.app/>
+>
+> <a href="https://parcel-tracking-kohl.vercel.app" target="_blank">https://parcel-tracking-kohl.vercel.app</a>
 
 <br />
 
